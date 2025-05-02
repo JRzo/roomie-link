@@ -1,0 +1,152 @@
+body{
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
+}
+/* .parent {
+    padding: 0px;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+    height: 50em;
+    width: 80%;
+    margin:auto;
+    margin-top: 2em;
+    border: 1px solid white;
+    -webkit-box-shadow: 5px 5px 11px 5px rgba(0,0,0,0.39); 
+    box-shadow: 5px 5px 11px 5px rgba(0,0,0,0.39);
+} */
+    
+
+.parent {
+    display: grid;
+    grid-template-columns: 0.8fr repeat(4, 1fr);
+    grid-template-rows: 0.5fr repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: white;
+    border: 1px solid white;
+    width: 90%;
+    height: 50em;
+    margin:auto;
+    margin-top: 2em;
+}
+.div1 {
+    grid-area: 1 / 1 / 2 / 6;
+    color: black;
+    display: flex;
+}
+.div1 .universityDescription{
+    display: flex;
+    width: 20%;
+    flex-flow: row wrap;
+    justify-content:flex-start;
+    align-items: center;
+    list-style: none;
+}
+.div1 .options {
+    display: flex;
+    width: 80%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+.div1 ul a{
+    color: black;
+    font-family: "Permanent Marker", cursive;
+    font-weight: 100;
+    font-size: 1.8em;
+    font-style: normal;
+}
+.div1 ul a:hover{
+    color: #003bfc;
+    text-decoration: underline;
+}
+.div1 ul img{
+    border-radius: 50%;
+    width: 80px;
+}
+
+
+
+/* Sidebar */
+
+.div2 {
+    grid-area: 2 / 1 / 6 / 2;
+    color: black;
+    background: #edede95d;
+}
+
+.div2 ul a{
+    color: black;
+    font-size: 1.7em;
+    font-family: "Permanent Marker", cursive;
+}
+
+.div2 ul{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    height: 80%;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.div2 ul li:hover{
+    background: #a30101;;
+}
+
+.div2 ul li a:hover, .div2 ul li i:hover{
+    color:white
+}
+
+.div3 { 
+    grid-area: 2 / 2 / 6 / 6;
+    background: #e20004b7;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+/* Profile Matches */
+.div3 .filter{
+    width: 100%;
+    margin: 0px;
+    height: 10%;
+    border: 1px solid orange;
+}
+.div3 div{
+    display: flex;
+    flex-flow: row wrap ;
+    justify-content: center;
+}
+
+.div3 div img{
+    width: 50%;
+    margin: auto;
+}
+.div3 .card{
+    width: 100%;
+    height: 70%;
+    border: 1px solid white;
+    text-align: center;
+}
+
+
+/* Button */
+.div3 button{
+    position: relative;
+    top: 2.8em;
+    left: 4.5em;
+    width: 50%;
+    height: 10%;
+}
+/* Animations */
+
