@@ -1,152 +1,260 @@
-body{
-    background-color: #8BC6EC;
-    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-
-}
-/* .parent {
+/* Adding Daisy UI */
+@import "tailwindcss";
+@plugin "daisyui";
+*{
+    box-sizing: border-box;
+    clear: both;
     padding: 0px;
-    background: white;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 8px;
-    height: 50em;
-    width: 80%;
-    margin:auto;
-    margin-top: 2em;
-    border: 1px solid white;
-    -webkit-box-shadow: 5px 5px 11px 5px rgba(0,0,0,0.39); 
-    box-shadow: 5px 5px 11px 5px rgba(0,0,0,0.39);
-} */
-    
+    margin: 0px;
+}
+body {
+  font-family: sans-serif; /* Add a default, readable font */
+  color: black; /* Ensure default text color is readable */
+  margin: 0; /* Reset default body margin */
+  padding: 0; /* Reset default body padding */
+  min-height: 100vh; /* Ensure body takes at least the full viewport height */
+}
 
 .parent {
-    display: grid;
-    grid-template-columns: 0.8fr repeat(4, 1fr);
-    grid-template-rows: 0.5fr repeat(4, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    background-color: white;
-    border: 1px solid white;
-    width: 90%;
-    height: 50em;
-    margin:auto;
-    margin-top: 2em;
+  display: grid;
+  grid-template-columns: 0.8fr repeat(4, 1fr);
+  grid-template-rows: 0.5fr repeat(4, 1fr);
+  gap: 0px; /* Use 'gap' for both row and column gap */
+  border: 1px solid white;
+  width: 90%;
+  max-width: 1200px; /* Add a maximum width for better readability on large screens */
+  height: 50em;
+  margin: 2em auto; /* Center the parent and add top/bottom margin */
+  box-shadow: 5px 5px 11px 5px rgba(0, 0, 0, 0.39); /* Standardize box-shadow */
+  padding: 0; /* Remove unnecessary padding */
+  background-color: white; /* Add a background color for the container */
 }
+
 .div1 {
-    grid-area: 1 / 1 / 2 / 6;
-    color: black;
-    display: flex;
+  grid-area: 1 / 1 / 2 / 6;
+  color: black;
+  display: flex;
+  align-items: center; /* Vertically align items in the header */
+  padding: 1em; /* Add some padding around the header content */
+  background-color: rgba(255, 255, 255, 0.8); /* Add a subtle background */
+  backdrop-filter: blur(5px); /* Add a subtle blur to the background */
 }
-.div1 .universityDescription{
-    display: flex;
-    width: 20%;
-    flex-flow: row wrap;
-    justify-content:flex-start;
-    align-items: center;
-    list-style: none;
+
+.div1 .universityDescription {
+  display: flex;
+  width: auto; /* Adjust width based on content */
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  margin: 0; /* Remove default list margin */
+  padding: 0; /* Remove default list padding */
 }
+
+.div1 .universityDescription img {
+  border-radius: 50%;
+  width: 60px; /* Slightly smaller image */
+  margin-right: 1em; /* Add some space between image and text */
+}
+
 .div1 .options {
-    display: flex;
-    width: 80%;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-}
-.div1 ul a{
-    color: black;
-    font-family: "Permanent Marker", cursive;
-    font-weight: 100;
-    font-size: 1.8em;
-    font-style: normal;
-}
-.div1 ul a:hover{
-    color: #003bfc;
-    text-decoration: underline;
-}
-.div1 ul img{
-    border-radius: 50%;
-    width: 80px;
+  display: flex;
+  width: 100%; /* Take full available width */
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
+.div1 .options a {
+  color: black;
+  font-family: "Permanent Marker", cursive;
+  font-weight: normal; /* Use 'normal' instead of 100 */
+  font-size: 1.5em; /* Slightly smaller font size for better spacing */
+  text-decoration: none; /* Remove default link underline */
+  padding: 0.5em 1em; /* Add padding for better touch targets */
+}
 
+.div1 .options a:hover {
+  color: #003bfc;
+  text-decoration: underline;
+}
 
 /* Sidebar */
-
 .div2 {
-    grid-area: 2 / 1 / 6 / 2;
-    color: black;
-    background: #edede95d;
+  grid-area: 2 / 1 / 6 / 2;
+  color: black;
+  background-color: rgba(237, 237, 233, 0.37); /* Slightly more opaque */
+  padding: 1em; /* Add some padding */
 }
 
-.div2 ul a{
-    color: black;
-    font-size: 1.7em;
-    font-family: "Permanent Marker", cursive;
+.div2 ul {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  height: 80%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: stretch; /* Make list items take full width */
 }
 
-.div2 ul{
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-around;
-    height: 80%;
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    align-items: center;
+.div2 ul li {
+  padding: 0.8em 0; /* Add vertical padding to list items */
+  text-align: center; /* Center text in list items */
+  transition: background-color 0.3s ease; /* Add smooth hover transition */
 }
 
-.div2 ul li:hover{
-    background: #a30101;;
+.div2 ul li:hover {
+  background-color: #a30101;
 }
 
-.div2 ul li a:hover, .div2 ul li i:hover{
-    color:white
+.div2 ul li a,
+.div2 ul li i {
+  display: block; /* Make links and icons fill the list item */
+  color: black;
+  font-size: 1.3em; /* Slightly smaller font size */
+  font-family: "Permanent Marker", cursive;
+  text-decoration: none; /* Remove default link underline */
+  padding: 0.5em; /* Add padding to the link/icon */
 }
 
-.div3 { 
-    grid-area: 2 / 2 / 6 / 6;
-    background: #e20004b7;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
+.div2 ul li a:hover,
+.div2 ul li i:hover {
+  color: white;
+}
+
+.div3 {
+  grid-area: 2 / 2 / 6 / 6;
+  background-color: rgba(226, 0, 4, 0.72); /* Slightly more opaque */
+  margin: 0;
+  padding: 1em; /* Add padding around the content */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start; /* Align items to the top */
+  gap: 1em; /* Add gap between child elements */
 }
 
 /* Profile Matches */
-.div3 .filter{
-    width: 100%;
-    margin: 0px;
-    height: 10%;
-    border: 1px solid orange;
-}
-.div3 div{
-    display: flex;
-    flex-flow: row wrap ;
-    justify-content: center;
+.div3 .filter {
+  width: 100%;
+  margin-bottom: 1em; /* Add some space below the filter */
+  padding: 0.5em;
+  border: 1px solid orange;
+  text-align: center; /* Center filter content if any */
 }
 
-.div3 div img{
-    width: 50%;
-    margin: auto;
-}
-.div3 .card{
-    width: 100%;
-    height: 70%;
-    border: 1px solid white;
-    text-align: center;
+.div3 > div { /* Target direct children that are divs */
+  display: flex;
+  flex-flow: column wrap; /* Stack items vertically */
+  justify-content: flex-start; /* Align items to the start */
+  align-items: center; /* Center items horizontally */
+  width: calc(33% - 1em); /* Adjust width for 3 columns with gap */
+  min-width: 200px; /* Ensure a minimum width for smaller screens */
+  margin-bottom: 1em; /* Add spacing between profile cards */
 }
 
+.div3 > div img {
+  width: 80%; /* Make images responsive within their container */
+  max-width: 150px; /* Limit maximum image width */
+  margin-bottom: 0.5em;
+  border-radius: 0.5em; /* Add some rounded corners to images */
+}
+
+.div3 .card {
+  width: 100%;
+  height: auto; /* Adjust height based on content */
+  border: 1px solid white;
+  text-align: center;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background for cards */
+  border-radius: 0.5em;
+}
+
+.div3 .card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: white;
+}
+
+.div3 .card p {
+  color: white;
+  font-size: 0.9em;
+  margin-bottom: 0.8em;
+}
 
 /* Button */
-.div3 button{
-    position: relative;
-    top: 2.8em;
-    left: 4.5em;
-    width: 50%;
-    height: 10%;
+.div3 button {
+  position: relative;
+  /* Adjust positioning based on the layout */
+  top: auto;
+  left: auto;
+  width: 60%;
+  height: auto;
+  padding: 0.8em 1.5em;
+  background-color: #003bfc;
+  color: white;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  margin-top: 1em; /* Add some space above the button */
 }
-/* Animations */
 
+.div3 button:hover {
+  background-color: #0029a3;
+}
+
+/* Ensure Tailwind's responsive utilities work well with your grid */
+@media (max-width: 768px) {
+  .parent {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    grid-template-rows: auto;
+    height: auto;
+  }
+  .div1 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .div1 .universityDescription {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .div1 .options {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .div1 .options a {
+    margin-bottom: 0.5em;
+  }
+  .div2 {
+    grid-area: auto; /* Flow naturally below the header */
+    width: 100%;
+  }
+  .div2 ul {
+    flex-direction: row;
+    justify-content: space-around;
+    height: auto;
+    padding: 1em;
+  }
+  .div2 ul li {
+    padding: 0;
+  }
+  .div3 {
+    grid-area: auto; /* Flow naturally below the sidebar */
+    flex-direction: column;
+    align-items: center;
+  }
+  .div3 > div {
+    width: 80%;
+  }
+  .div3 button {
+    width: 80%;
+    left: auto;
+  }
+}
