@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.shadow-md h2{
+    text-align: center;
+}
+
+.w-rounded-full img{
+    margin: auto;
+}

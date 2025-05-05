@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionaire</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/questionare.css">
+</head>
+<nav>
+    <ul class="menu menu-horizontal bg-base-200 rounded-box mt-6">
+        <li>
+          <a class="tooltip" data-tip="Home" href="/profile">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </a>
+        </li>
+    </ul>
+</nav>
+<body>
+    <div class="w-full max-w-md mx-auto p-6 bg-base-100 rounded-md shadow-md">
+        <!-- The name should be here -->
+    <h2 class="text-xl font-semibold mb-4">User Profile</h2>
+    <div class="flex space-x-4 mb-6 justify-center">
+      <div class="avatar avatar-online">
+        <div class="w-24 rounded-full">
+          <img src="https://img.daisyui.com/images/profile/demo/gordon@192.webp" alt="Online User Avatar" />
+        </div>
+      </div>
+
+    </div>
+  
+    <h2 class="text-xl font-semibold mb-4">User Details</h2>
+    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+      <legend class="fieldset-legend">About you</legend>
+  
+      <div class="form-control w-full mb-2">
+        <label class="label">
+          <span class="label-text">College</span>
+        </label>
+        <input type="text" placeholder="Your College" class="input input-bordered w-full" />
+      </div>
+
+  
+      <div class="w-full max-w-xs">
+        <label class="label">
+            <span class="label-text">Year</span>
+          </label>
+        <input type="range" min="0" max="100" value="25" class="range" step="25" />
+        <div class="flex justify-between px-2.5 mt-2 text-xs">
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+        </div>
+        <div class="flex justify-between px-2.5 mt-2 text-xs">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5+</span>
+        </div>
+      </div>
+      <div class="form-control w-full">
+        <label class="label">
+          <span class="label-text">Major</span>
+        </label>
+        <input type="text" placeholder="Your current Major" class="input input-bordered w-full" />
+      </div>
+
+      <div class="form-control w-full mb-2">
+        <label for="label">
+            <span class="label-text">Sex</span>
+        </label>
+        <select class="select select-primary">
+            <option disabled selected>Pick a text editor</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+            </select>
+
+      </div>
+    </fieldset>
+  
+    <h2 class="text-xl font-semibold mb-4">Additional Preferences</h2>
+    <div class="mb-4">
+      <div class="form-control">
+        <label class="cursor-pointer label">
+          <span class="label-text">Enable Comments?</span>
+          <input type="checkbox" class="toggle" />
+        </label>
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <label class="label">
+        <span class="label-text">Category</span>
+      </label>
+      <select class="select select-bordered w-full">
+        <option disabled selected>Pick one</option>
+        <option>Technology</option>
+        <option>Travel</option>
+        <option>Food</option>
+        <option>Other</option>
+      </select>
+    </div>
+  
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Hobbies</span>
+      </label>
+      <textarea class="textarea textarea-bordered" placeholder="Example => Art,Tech, Music"></textarea>
+    </div>
+  
+    <div class="mt-6">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+      <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

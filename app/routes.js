@@ -18,8 +18,8 @@ module.exports = (app, passport, db) =>{
 
         // Settings
 
-    app.get('/profile/settings', (req, res) =>{
-        res.render('settings.ejs')
+    app.get('/personalUser', (req, res) =>{
+        res.render('personalUser.ejs')
     })
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -44,7 +44,6 @@ module.exports = (app, passport, db) =>{
         app.get('/signup', function(req, res) {
             res.render('index.ejs', { message: req.flash('signupMessage') });
         });
-
         // process the signup form
         app.post('/signup', passport.authenticate('local-signup', {
             successRedirect : '/profile', // redirect to the secure profile section
