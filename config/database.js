@@ -1,4 +1,22 @@
-module.exports = {
-    "url": "mongodb+srv://juliosoftwaredev:CyberWarrior2209**@roomiedb.u13vvfq.mongodb.net/?retryWrites=true&w=majority&appName=RoomieDB",
-    "dbName": "RommieLinkDB"
+// Setting up the database
+
+const mongoose = require("mongoose");
+
+const connectDB = async () =>{
+    try{
+        // For the connection
+        const conn = await mongoose.connect(process.env.DB_STRING, {
+            useNewUrlParser:true,
+            useUnifiedTopology: true,
+            useFindAndModify:false,
+            useCreateIndex: true
+        })
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    }
+    catch(err){
+        console.log(err);
+        process.exit(1)
+    }
 }
+
+module.exports = connectDB;
