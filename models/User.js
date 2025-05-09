@@ -39,6 +39,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: '' // Store as a comma-separated string, or consider an array of strings
   },
+
+  social: {
+    type: String,
+    default: ''
+  }
 });
 
 // Password hash middleware.

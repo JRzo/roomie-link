@@ -13,4 +13,6 @@ router.post("/updateUserDetails", ensureAuth, postsController.updateUserDetails)
 
 router.post("/createPost", upload.single("file"), postsController.createPost);
 
+
+
 module.exports = router;
