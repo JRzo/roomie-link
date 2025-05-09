@@ -1,0 +1,41 @@
+RoomieLink - Find Your Perfect Campus Roommate
+🚀 A full-stack web application built with Node.js, Express.js, MongoDB, EJS, and Tailwind CSS to help students and professionals find compatible roommates near their campus.
+
+✨ Features
+✅ User Authentication – Sign up, log in, and manage profiles securely.
+✅ Roommate Matching – Filter by university, major, budget, and lifestyle preferences.
+✅ Responsive UI – Built with Tailwind CSS for a sleek, mobile-friendly experience.
+✅ Dynamic Rendering – EJS templates for server-side rendering.
+
+🛠 Tech Stack
+Frontend: EJS, Tailwind CSS, JavaScript
+
+Backend: Node.js, Express.js
+
+Database: MongoDB (with Mongoose ODM)
+
+Authentication: Passport.js (or JWT)
+
+Deployment: Render / Vercel / Railway (backend), Netlify / Vercel (frontend)
+
+🚀 Deployment
+Backend: Deploy to Render / Railway / Heroku
+
+Frontend: Serve EJS via Express (or use Vercel if decoupled)
+
+Database: Use MongoDB Atlas for cloud DB
+
+📜 License
+MIT
+
+💡 Future Improvements
+AI-based roommate matching
+
+In-app rent splitting
+
+User reviews & ratings
+
+🌟 Happy Hacking!
+Let’s make roommate hunting suck less. 🚀
+
+👉 Contribute? Fork & PR!
