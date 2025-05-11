@@ -13,6 +13,8 @@ router.post("/updateUserDetails", ensureAuth, postsController.updateUserDetails)
 
 router.post("/createPost", upload.single("file"), postsController.createPost);
 
+router.post('/applyPreferenceFilter', postsController.applyPreferenceFilter);
+
 
 
 module.exports = router;

@@ -12,150 +12,150 @@
 <nav>
     <ul class="menu menu-horizontal bg-base-200 rounded-box mt-6">
         <li>
-          <a class="tooltip" data-tip="Home" href="/profile">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-          </a>
+            <a class="tooltip" data-tip="Home" href="/profile">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+            </a>
         </li>
     </ul>
 </nav>
 <body>
     <div class="w-full max-w-md mx-auto p-6 bg-base-100 rounded-md shadow-md">
         <h2 class="text-xl font-semibold mb-4">User Profile</h2>
-    <div class="flex space-x-4 mb-6 justify-center">
-      <div class="avatar avatar-online">
-        <div class="w-24 rounded-full">
-          <img src="<%= user.profileImage ? user.profileImage : '/img/default_avatar.png' %>" alt="User Profile Avatar" />
+        <div class="flex space-x-4 mb-6 justify-center">
+            <div class="avatar avatar-online">
+                <div class="w-24 rounded-full">
+                    <img src="<%= user.profileImage ? user.profileImage : '/img/default_avatar.png' %>" alt="User Profile Avatar" />
+                </div>
+            </div>        
         </div>
-      </div>       
-    </div>
-    <div style="display: flex; justify-content: center;">
-      <div class="max-w-sm">
-        <form action="/post/uploadProfilePicture" enctype="multipart/form-data" method="POST">
-          <label class="block">
-            <span class="sr-only ">Choose profile photo</span>
-            <input type="file" class="block w-full text-sm text-gray-500
-              file:me-4 file:py-2 file:px-4
-              file:rounded-lg file:border-0
-              file:text-sm file:font-semibold
-              file:bg-blue-600 file:text-white
-              hover:file:bg-blue-700
-              file:disabled:opacity-50 file:disabled:pointer-events-none
-              dark:text-neutral-500
-              dark:file:bg-blue-500
-              dark:hover:file:bg-blue-400
-            " name="file"> </label>
-          <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value="upload">
-            Upload
-          </button>
-        </form>
-      </div>
-    </div>
-    <br>
- 
-    <h2 class="text-xl font-semibold mb-4">User Details</h2>
+        <div style="display: flex; justify-content: center;">
+            <div class="max-w-sm">
+                <form action="/post/uploadProfilePicture" enctype="multipart/form-data" method="POST">
+                    <label class="block">
+                        <span class="sr-only ">Choose profile photo</span>
+                        <input type="file" class="block w-full text-sm text-gray-500
+                            file:me-4 file:py-2 file:px-4
+                            file:rounded-lg file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-600 file:text-white
+                            hover:file:bg-blue-700
+                            file:disabled:opacity-50 file:disabled:pointer-events-none
+                            dark:text-neutral-500
+                            dark:file:bg-blue-500
+                            dark:hover:file:bg-blue-400
+                        " name="file"> </label>
+                    <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value="upload">
+                        Upload
+                    </button>
+                </form>
+            </div>
+        </div>
+        <br>
+    
+        <h2 class="text-xl font-semibold mb-4">User Details</h2>
 
-    <form action="/post/updateUserDetails" method="POST">
-      <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
-        <legend class="fieldset-legend">About you</legend>
-  
-        <div class="form-control w-full mb-2">
-          <label class="label">
-            <span class="label-text">College</span>
-          </label>
-          <input type="text" name="college" placeholder="Your College" class="input input-bordered w-full" value="<%= user.college ? user.college : '' %>"/>
-        </div>
-  
-        <div class="w-full max-w-xs">
-          <label class="label">
-              <span class="label-text">Year</span>
-            </label>
-          <input type="range" name="year" min="0" max="100" value="<%= user.year ? user.year : 25 %>" class="range" step="1" />
-          <div class="flex justify-between px-2.5 mt-2 text-xs">
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-          </div>
-          <div class="flex justify-between px-2.5 mt-2 text-xs">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5+</span>
-          </div>
-        </div>
-        <div class="form-control w-full">
-          <label class="label">
-            <span class="label-text">Major</span>
-          </label>
-          <input type="text" name="major" placeholder="Your current Major" class="input input-bordered w-full" value="<%= user.major ? user.major : '' %>"/>
-        </div>
-  
-        <div class="form-control w-full mb-2">
-          <label for="sex" class="label">
-              <span class="label-text">Sex</span>
-          </label>
-          <select id="sex" name="sex" class="select select-primary">
-              <option disabled selected>Pick a text editor</option>
-              <option value="Male" <%= user.sex === 'Male' ? 'selected' : '' %>>Male</option>
-              <option value="Female" <%= user.sex === 'Female' ? 'selected' : '' %>>Female</option>
-              <option value="Other" <%= user.sex === 'Other' ? 'selected' : '' %>>Other</option>
-          </select>
-        </div>
-      </fieldset>
-    
-      <h2 class="text-xl font-semibold mb-4">Additional Preferences</h2>
-      <div class="mb-4">
-        <div class="form-control">
-          <label class="cursor-pointer label">
-            <span class="label-text">Enable Comments?</span>
-            <input type="checkbox" name="enableComments" class="toggle" <%= user.enableComments ? 'checked' : '' %>/>
-          </label>
-        </div>
-      </div>
-    
-      <div class="mb-4">
-        <label class="label">
-          <span class="label-text">Category</span>
-        </label>
-        <select name="category" class="select select-bordered w-full">
-          <option disabled selected>Pick one</option>
-          <option value="Technology" <%= user.category === 'Technology' ? 'selected' : '' %>>Technology</option>
-          <option value="Travel" <%= user.category === 'Travel' ? 'selected' : '' %>>Travel</option>
-          <option value="Food" <%= user.category === 'Food' ? 'selected' : '' %>>Food</option>
-          <option value="Other" <%= user.category === 'Other' ? 'selected' : '' %>>Other</option>
-        </select>
-      </div>
-    
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Hobbies</span>
-        </label>
-        <textarea name="hobbies" class="textarea textarea-bordered" placeholder="Example => Art,Tech, Music"><%= user.hobbies ? user.hobbies : '' %></textarea>
-      </div>
+        <form action="/post/updateUserDetails" method="POST">
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-4 mb-4">
+                <legend class="fieldset-legend">About you</legend>
+        
+                <div class="form-control w-full mb-2">
+                    <label class="label">
+                        <span class="label-text">College</span>
+                    </label>
+                    <input type="text" name="college" placeholder="Your College" class="input input-bordered w-full" value="<%= user.college ? user.college : '' %>"/>
+                </div>
+        
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Graduation Year</span>
+                    </label>
+                    <select name="year" class="select select-bordered w-full">
+                        <option value="">Any</option>
+                        <%
+                            const currentYear = new Date().getFullYear();
+                            const startYear = currentYear - 5; // Go back 5 years
+                            const endYear = currentYear + 5;   // Go forward 5 years
+                            for (let y = startYear; y <= endYear; y++) {
+                        %>
+                            <option value="<%= y %>" <%= typeof user !== 'undefined' && user.year == y ? 'selected' : '' %>><%= y %></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </div>
+                <div class="form-control w-full">
+                    <label class="label">
+                        <span class="label-text">Major</span>
+                    </label>
+                    <input type="text" name="major" placeholder="Your current Major" class="input input-bordered w-full" value="<%= user.major ? user.major : '' %>"/>
+                </div>
+        
+                <div class="form-control w-full mb-2">
+                    <label for="sex" class="label">
+                        <span class="label-text">Sex</span>
+                    </label>
+                    <select id="sex" name="sex" class="select select-primary">
+                        <option disabled selected>Pick a text editor</option>
+                        <option value="Male" <%= user.sex === 'Male' ? 'selected' : '' %>>Male</option>
+                        <option value="Female" <%= user.sex === 'Female' ? 'selected' : '' %>>Female</option>
+                        <option value="Other" <%= user.sex === 'Other' ? 'selected' : '' %>>Other</option>
+                    </select>
+                </div>
+            </fieldset>
+        
+            <h2 class="text-xl font-semibold mb-4">Additional Preferences</h2>
+            <div class="mb-4">
+                <div class="form-control">
+                    <label class="cursor-pointer label">
+                        <span class="label-text">Enable Comments?</span>
+                        <input type="checkbox" name="enableComments" class="toggle" <%= user.enableComments ? 'checked' : '' %>/>
+                    </label>
+                </div>
+            </div>
+        
+            <div class="mb-4">
+                <label class="label">
+                    <span class="label-text">Category</span>
+                </label>
+                <select name="category" class="select select-bordered w-full">
+                    <option disabled selected>Pick one</option>
+                    <option value="Technology" <%= user.category === 'Technology' ? 'selected' : '' %>>Technology</option>
+                    <option value="Travel" <%= user.category === 'Travel' ? 'selected' : '' %>>Travel</option>
+                    <option value="Food" <%= user.category === 'Food' ? 'selected' : '' %>>Food</option>
+                    <option value="Other" <%= user.category === 'Other' ? 'selected' : '' %>>Other</option>
+                </select>
+            </div>
+        
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Hobbies</span>
+                </label>
+                <textarea name="hobbies" class="textarea textarea-bordered" placeholder="Example => Art,Tech, Music"><%= user.hobbies ? user.hobbies : '' %></textarea>
+            </div>
 
-      <div class="form-control">
-        <label class="label">
-          <span class="label-text">Instagram</span>
-        </label>
-        <textarea name="instagram" class="textarea textarea-bordered" placeholder="link" value="<%= user.social ? user.social: '' %>"></textarea>
-      </div>
-    
-      <div class="mt-6">
-        <button type="submit" class="btn btn-primary">Save Details</button>
-      </div>
-    </form> </div> <script src="https://cdn.tailwindcss.com"></script>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Instagram</span>
+                </label>
+                <input type="text" name="instagram" class="textarea textarea-bordered" placeholder="link" value="<%= user.social ? user.social : '' %>"></input>
+            </div>
+        
+            <div class="mt-6">
+                <button type="submit" class="btn btn-primary">Save Details</button>
+            </div>
+        </form> 
+    </div> 
+    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>

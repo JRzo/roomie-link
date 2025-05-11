@@ -12,11 +12,16 @@ router.get('/personalUser',postsController.getPersonal);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
-router.get("/signup", authController.getSignup); // This is the line we are focusing on
+router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 
+// Get the prefenr
+router.get('/preferences', postsController.getPreferences)
 
-// This is the only line that should remain uncommented for now.
-router.get("/signup", authController.getSignup); // Line 26 in your previous setup.
+router.get("/signup", authController.getSignup); 
+
+
+// Application file
+router.get('/application', ensureAuth, postsController.getApplication)
 
 module.exports = router;

@@ -34,27 +34,27 @@ body {
   grid-area: 1 / 1 / 2 / 6;
   color: black;
   display: flex;
-  align-items: center; /* Vertically align items in the header */
-  padding: 1em; /* Add some padding around the header content */
-  background-color: rgba(255, 255, 255, 0.8); /* Add a subtle background */
-  backdrop-filter: blur(5px); /* Add a subtle blur to the background */
+  align-items: center; 
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.8); 
+  backdrop-filter: blur(5px); 
 }
 
 .div1 .universityDescription {
   display: flex;
-  width: auto; /* Adjust width based on content */
+  width: auto; 
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
   list-style: none;
-  margin: 0; /* Remove default list margin */
-  padding: 0; /* Remove default list padding */
+  margin: 0; 
+  padding: 0; 
 }
 
 .div1 .universityDescription img {
   border-radius: 50%;
-  width: 60px; /* Slightly smaller image */
-  margin-right: 1em; /* Add some space between image and text */
+  width: 100px; 
+  margin-right: 1em; 
 }
 
 .div1 .options {
@@ -71,10 +71,10 @@ body {
 .div1 .options a {
   color: black;
   font-family: "Permanent Marker", cursive;
-  font-weight: normal; /* Use 'normal' instead of 100 */
-  font-size: 1.5em; /* Slightly smaller font size for better spacing */
-  text-decoration: none; /* Remove default link underline */
-  padding: 0.5em 1em; /* Add padding for better touch targets */
+  font-weight: normal;
+  font-size: 1.5em; 
+  text-decoration: none;
+  padding: 0.5em 1em; 
 }
 
 .div1 .options a:hover {
@@ -144,24 +144,24 @@ body {
   margin-bottom: 1em; /* Add some space below the filter */
   padding: 0.5em;
   border: 1px solid orange;
-  text-align: center; /* Center filter content if any */
+  text-align: center; 
 }
 
-.div3 > div { /* Target direct children that are divs */
+.div3 > div { 
   display: flex;
-  flex-flow: column wrap; /* Stack items vertically */
-  justify-content: flex-start; /* Align items to the start */
-  align-items: center; /* Center items horizontally */
-  width: calc(33% - 1em); /* Adjust width for 3 columns with gap */
-  min-width: 200px; /* Ensure a minimum width for smaller screens */
-  margin-bottom: 1em; /* Add spacing between profile cards */
+  flex-flow: column wrap; 
+  justify-content: flex-start; 
+  align-items: center; 
+  width: calc(33% - 1em); 
+  min-width: 200px;
+  margin-bottom: 1em; 
 }
 
 .div3 > div img {
-  width: 80%; /* Make images responsive within their container */
-  max-width: 150px; /* Limit maximum image width */
+  width: 80%; 
+  max-width: 150px; 
   margin-bottom: 0.5em;
-  border-radius: 0.5em; /* Add some rounded corners to images */
+  border-radius: 0.5em;
 }
 
 .div3 .card {
@@ -209,7 +209,7 @@ body {
   background-color: #0029a3;
 }
 
-/* Ensure Tailwind's responsive utilities work well with your grid */
+
 @media (max-width: 768px) {
   .parent {
     grid-template-columns: 1fr; /* Stack columns on smaller screens */
