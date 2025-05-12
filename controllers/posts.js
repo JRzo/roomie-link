@@ -1,7 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post.js");
 const User = require("../models/User"); 
-// We need the comment models
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -259,26 +258,25 @@ module.exports = {
             filterCriteria.major = new RegExp(major.trim(), 'i');
         }
 
-        if (sex && sex !== 'Any' && sex !== '') { // Added '' check for select default
+        if (sex && sex !== 'Any' && sex !== '') {
             filterCriteria.sex = sex;
         }
 
 
-        if (category && category !== 'Any' && category !== '') { // Added '' check for select default
+        if (category && category !== 'Any' && category !== '') { 
             filterCriteria.category = category;
         }
 
         if (hobbies && hobbies.trim() !== '') {
             const hobbyArray = hobbies.split(',').map(h => h.trim()).filter(h => h !== '');
             if (hobbyArray.length > 0) {
-                // Using $in with regex for partial matches within hobbies array
+                
                 filterCriteria.hobbies = { $in: hobbyArray.map(h => new RegExp(h, 'i')) };
             }
         }
 
-        // Check if hasInstagram is 'on' (checkbox is checked)
         if (hasInstagram === 'on') {
-            filterCriteria.social = { $exists: true, $ne: null, $ne: '' }; // Checks if social field exists and is not null or empty string
+            filterCriteria.social = { $exists: true, $ne: null, $ne: '' }; 
         }
 
         console.log('Applying Filter Criteria:', filterCriteria);
@@ -287,20 +285,27 @@ module.exports = {
 
         console.log(`Found ${filteredUsers.length} users matching the filter.`);
 
-        // Get the logged-in user's college for the header links
         const userCollege = req.user && req.user.college ? req.user.college : '';
 
-        // Pass the filter values back to the template so the form fields can be re-populated
         res.render('profile.ejs', {
             users: filteredUsers,
-            college: userCollege, // Pass the college for the header links
-            filters: req.body // Pass all filter values back to populate the form
+            college: userCollege,
+            filters: req.body 
         });
 
     } catch (err) {
         console.error("Error in applyPreferenceFilter:", err);
         req.flash('error', 'Failed to apply filter. Please try again.');
-        res.redirect('/profile'); // Redirect to profile, which should use getProfile to render
+        res.redirect('/profile'); 
     }
-}
+},
+// Search for Jobs
+        searchJobs: async (req, res) =>{
+                try{
+                        res.render('jobSearcher.ejs');
+                }
+                catch(err){
+                        console.log(err)
+                }
+        }
 };

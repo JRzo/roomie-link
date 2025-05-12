@@ -29,7 +29,12 @@
 
         <div class="lg:col-span-1 bg-base-100 shadow-md p-4 flex flex-col">
             <ul class="menu w-full">
-                <li><a href="/application" class="font-permanent-marker text-lg">Application</a></li>
+                <!-- <li><a href="/application" class="font-permanent-marker text-lg">Application</a></li> -->
+                <li class="font-permanent-marker text-lg">
+                    <a href="/jobSearch">
+                        Job Search
+                    </a>
+                </li>
                 <li><a href="https://www.google.com/search?q=restaurant+near+<%= college %>&sca_esv=31cd4d2547bda482&rlz=1C1SJWC_enUS1114US1114&sxsrf=AHTn8zoWZp9ljiHLsqT1uQKilQmOGDtmuQ%3A1746818850879&ei=IlceaNm1Nf-h5NoPsLzjiAw&ved=0ahUKEwjZzt-oj5eNAxX_EFkFHTDeGMEQ4dUDCBA&uact=5&oq=restaurant+near+umass&gs_lp=Egxnd3Mtd2l6LXNlcnAiFXJlc3RhdXJhbnQgbmVhciB1bWFzczILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgUQABiABDIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeSPIYUMoSWO8XcAB4ApABAJgBwgGgAagEqgEDNC4xuAEDyAEA-AEBmAIGoAK8BMICBBAAGEeYAwDiAwUSATEgQIgGAZAGCJIHAzUuMaAHwCKyBwM0LjG4B7cE&sclient=gws-wiz-serp" class="font-permanent-marker text-lg">Restaurants near</a></li>
                 <li class="menu-item">
                     <details>
@@ -198,7 +203,7 @@
                             <div class="card-body p-4 flex-grow">
                                 <h2 class="card-title text-lg mb-1"><%= users[i].email || 'No Email' %></h2>
                                 <p class="text-sm text-gray-600">
-                                    <%= users[i].hobbies && users[i].hobbies.length > 0 ? 'Hobbies: ' + users[i].hobbies.join(', ') : 'No hobbies listed.' %>
+                                    <%= users[i].hobbies && users[i].hobbies.length > 0 ? 'Hobbies: ' + users[i].hobbies : 'No hobbies listed.' %>
                                 </p>
                                 <ul class="list-none p-0 text-sm mt-2 space-y-1">
                                     <li><strong>College:</strong> <%= users[i].college || 'N/A' %></li>
@@ -210,7 +215,6 @@
                                 </ul>
                             </div>
                             <div class="card-actions p-4 flex justify-between items-center border-t border-base-200">
-                                <a href="/user/<%= users[i]._id %>" class="btn btn-primary btn-sm flex-grow mr-2">Match</a>
                                 <% if (users[i].social) { %>
                                     <a href="<%= users[i].social %>" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-circle btn-sm">
                                         <svg class="w-6 h-6" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">

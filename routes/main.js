@@ -24,4 +24,9 @@ router.get("/signup", authController.getSignup);
 // Application file
 router.get('/application', ensureAuth, postsController.getApplication)
 
+
+// Job search
+
+router.get('/jobSearch', ensureAuth, postsController.searchJobs)
+
 module.exports = router;
