@@ -1,66 +1,183 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light"> <head>
+<html lang="en" data-theme="light">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roomie Link - Applications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script> 
-    <title>Applications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="flex justify-center items-start min-h-screen">
-        <ul class="justify-left"></ul>
-        <ul class="menu menu-horizontal bg-base-500 rounded-box mt-6">
-            <li class="items-end">
-                <a class="tooltip" data-tip="Home" href="/profile">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-7 w-7"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                </a>
-            </li>
-            <li>
-              <a class="tooltip" data-tip="Requests">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-7 w-7"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 3.464V1.1m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C17 15.4 17 16 16.462 16H3.538C3 16 3 15.4 3 14.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 10 3.464ZM4 3 3 2M2 7H1m15-4 1-1m1 5h1M6.54 16a3.48 3.48 0 0 0 6.92 0H6.54Z"/>
+    <div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-auto h-screen">
+        <div class="col-span-5 bg-base-200 shadow-md flex items-center justify-between p-4">
+            <div class="flex items-center">
+                <div class="avatar">
+                    <div class="w-36 rounded-full">
+                        <img src="/img/rl.svg" alt="Roomie-Link Image" id="imageRL">
+                    </div>
+                </div>
+            </div>
+            <ul class="menu menu-horizontal px-10">
+                <li><a href="/profile" class="font-permanent-marker text-xl">Dashboard</a></li>
+                <li><a href="/application" class="font-permanent-marker text-xl">Application</a></li>
+            </ul>
+        </div>
 
+        <div class="lg:col-span-1 bg-base-100 shadow-md p-4 flex flex-col">
+            <ul class="menu w-full">
+                <li class="font-permanent-marker text-lg">
+                    <a href="/jobSearch">
+                        Job Search
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <details>
+                        <summary class="font-permanent-marker text-lg">
+                            <i class="fa fa-gear mr-2"></i> Settings
+                        </summary>
+                        <ul>
+                            <li><a href="/personalUser">Profile</a></li>
+                            <li><a href="/logout">Log Out
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                                </svg>
+                            </a></li>
+                            <li>
+                                <form action="/d/deleteAccount" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-ghost w-full justify-start">Delete Account</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="mt-8">
+                    <select class="select select-bordered w-full max-w-xs" id="theme-dropdown">
+                        <option disabled selected>Select Theme</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="cupcake">Cupcake</option>
+                        <option value="bumblebee">Bumblebee</option>
+                        <option value="emerald">Emerald</option>
+                        <option value="corporate">Corporate</option>
+                        <option value="synthwave">Synthwave</option>
+                        <option value="retro">Retro</option>
+                        <option value="cyberpunk">Cyberpunk</option>
+                        <option value="valentine">Valentine</option>
+                        <option value="halloween">Halloween</option>
+                        <option value="garden">Garden</option>
+                        <option value="forest">Forest</option>
+                        <option value="aqua">Aqua</option>
+                        <option value="lofi">Lofi</option>
+                        <option value="pastel">Pastel</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="wireframe">Wireframe</option>
+                        <option value="black">Black</option>
+                        <option value="luxury">Luxury</option>
+                        <option value="dracula">Dracula</option>
+                        <option value="cmyk">CMYK</option>
+                        <option value="autumn">Autumn</option>
+                        <option value="business">Business</option>
+                        <option value="acid">Acid</option>
+                        <option value="lemonade">Lemonade</option>
+                        <option value="night">Night</option>
+                        <option value="coffee">Coffee</option>
+                        <option value="winter">Winter</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="divider font-permanent-marker text-lg mt-8"></div>
+        </div>
 
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a class="tooltip" data-tip="Matches">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-7 w-7"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15.133 10.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C4.867 13.018 3 13.614 3 14.807 3 15.4 3 16 3.538 16h12.924C17 16 17 15.4 17 14.807c0-1.193-1.867-1.789-1.867-4.175ZM4 4a1 1 0 0 1-.707-.293l-1-1a1 1 0 0 1 1.414-1.414l1 1A1 1 0 0 1 4 4ZM2 8H1a1 1 0 0 1 0-2h1a1 1 0 1 1 0 2Zm14-4a1 1 0 0 1-.707-1.707l1-1a1 1 0 1 1 1.414 1.414l-1 1A1 1 0 0 1 16 4Zm3 4h-1a1 1 0 1 1 0-2h1a1 1 0 1 1 0 2ZM6.823 17a3.453 3.453 0 0 0 6.354 0H6.823Z"/>
-                </svg>
-              </a>
-            </li>
-          </ul>
+        <div class="lg:col-span-4 bg-base-300 p-6 flex flex-col gap-4 overflow-y-auto">
+            <h2 class="font-permanent-marker text-2xl mb-4">Match Requests</h2>
+
+            <div class="mb-6">
+                <h3 class="font-semibold text-lg">Received</h3>
+                <% if (matchRequestsReceived && matchRequestsReceived.length > 0) { %>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <% matchRequestsReceived.forEach(requester => { %>
+                            <div class="card bg-base-100 shadow-md">
+                                <div class="card-body">
+                                    <h4 class="card-title"><%= requester.email %></h4>
+                                    <p class="text-sm text-gray-600">Wants to connect!</p>
+                                    <div class="card-actions justify-end">
+                                        <form action="/post/acceptMatchRequest/<%= requester._id %>" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-success">Accept</button>
+                                        </form>
+                                        <form action="/post/rejectMatchRequest/<%= requester._id %>" method="POST">
+                                            <button type="submit" class="btn btn-sm btn-error">Reject</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    <p class="text-gray-500">No received match requests.</p>
+                <% } %>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-semibold text-lg">Sent</h3>
+                <% if (matchRequestsSent && matchRequestsSent.length > 0) { %>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <% matchRequestsSent.forEach(recipient => { %>
+                            <div class="card bg-base-100 shadow-md">
+                                <div class="card-body">
+                                    <h4 class="card-title"><%= recipient.email %></h4>
+                                    <p class="text-sm text-gray-600">Request sent.</p>
+                                    </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    <p class="text-gray-500">No sent match requests.</p>
+                <% } %>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-lg">Matches</h3>
+                <% if (matchedUsers && matchedUsers.length > 0) { %>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <% matchedUsers.forEach(matchedUser => { %>
+                            <div class="card bg-base-100 shadow-md">
+                                <div class="card-body">
+                                    <h4 class="card-title"><%= matchedUser.email %></h4>
+                                    <p class="text-sm text-gray-600">You are matched!</p>
+                                    <div class="card-actions justify-end">
+                                        <a href="/user/<%= matchedUser._id %>" class="btn btn-sm btn-outline btn-info">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    <p class="text-gray-500">No matches yet.</p>
+                <% } %>
+            </div>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeDropdown = document.getElementById('theme-dropdown');
+
+            themeDropdown.addEventListener('change', (event) => {
+                document.documentElement.setAttribute('data-theme', event.target.value);
+                localStorage.setItem('theme', event.target.value); // Optional: Save theme to local storage
+            });
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                themeDropdown.value = savedTheme;
+            }
+        });
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/profile.js"></script>
 </body>
 </html>
