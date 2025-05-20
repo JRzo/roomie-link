@@ -99,25 +99,22 @@
                 <h3 class="font-semibold text-lg">Received</h3>
                 <% if (matchRequestsReceived && matchRequestsReceived.length > 0) { %>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <% matchRequestsReceived.forEach(requester => { %>
+                        <% matchRequestsReceived.forEach(request => { %>
                             <div class="card bg-base-100 shadow-md">
                                 <div class="card-body">
-                                    <h4 class="card-title"><%= requester.email %></h4>
+                                    <h4 class="card-title"><%= request.email %></h4>
                                     <p class="text-sm text-gray-600">Wants to connect!</p>
                                     <div class="card-actions justify-end">
-                                        <form action="/post/acceptMatchRequest/<%= requester._id %>" method="POST">
-                                            <button type="submit" class="btn btn-sm btn-success">Accept</button>
+                                        <form action="/post/acceptMatchRequest/<%= request._id %>" method="POST" onsubmit="handleAcceptRequest(event, this)" class="inline">
+                                            <button type="submit" class="btn btn-success btn-sm">Accept</button>
                                         </form>
-                                        <form action="/post/rejectMatchRequest/<%= requester._id %>" method="POST">
-                                            <button type="submit" class="btn btn-sm btn-error">Reject</button>
-                                        </form>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
                         <% }); %>
                     </div>
                 <% } else { %>
-                    <p class="text-gray-500">No received match requests.</p>
+                    <p class="text-gray-500">No pending match requests received.</p>
                 <% } %>
             </div>
 
@@ -130,7 +127,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title"><%= recipient.email %></h4>
                                     <p class="text-sm text-gray-600">Request sent.</p>
-                                    </div>
+                                </div>
                             </div>
                         <% }); %>
                     </div>
@@ -176,6 +173,31 @@
                 themeDropdown.value = savedTheme;
             }
         });
+
+        async function handleAcceptRequest(event, form) {
+            event.preventDefault(); // Prevent the default form submission
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    console.log('Match request accepted:', data.message);
+                    // Optionally update the UI here to remove the accepted request from the list
+                    // For a simple approach, you could reload the entire applications page:
+                    window.location.reload();
+                } else {
+                    console.error('Failed to accept match request:', data.message);
+                    alert(data.message); // Or display an error message in the UI
+                }
+            } catch (error) {
+                console.error('There was an error accepting the match request:', error);
+                alert('An unexpected error occurred.');
+            }
+        }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/profile.js"></script>

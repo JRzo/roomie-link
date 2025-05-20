@@ -41,74 +41,70 @@ module.exports = {
             res.status(500).send("Error fetching applications.");
         }
     },
+sendMatchRequest: async (req, res) => {
+    const recipientId = req.params.id;
+    const senderId = req.user.id;
 
-    sendMatchRequest: async (req, res) => {
-        const recipientId = req.params.id;
-        const senderId = req.user.id;
+    try {
+        const recipient = await User.findById(recipientId);
+        const sender = await User.findById(senderId);
 
-        try {
-            const recipient = await User.findById(recipientId);
-            const sender = await User.findById(senderId);
-
-            if (!recipient || !sender) {
-                return res.status(404).send("User not found.");
-            }
-
-            // Add recipient to sender's sent requests if not already there
-            if (!sender.matchRequestsSent.includes(recipientId)) {
-                sender.matchRequestsSent.push(recipientId);
-                await sender.save();
-            }
-
-            // Add sender to recipient's received requests if not already there
-            if (!recipient.matchRequestsReceived.includes(senderId)) {
-                recipient.matchRequestsReceived.push(senderId);
-                await recipient.save();
-            }
-
-            res.redirect('/application');
-        } catch (err) {
-            console.error("Error sending match request:", err);
-            req.flash('error', 'Failed to send match request. Please try again.');
-            res.redirect('/application');
+        if (!recipient || !sender) {
+            return res.status(404).json({ message: "User not found." });
         }
-    },
 
-    acceptMatchRequest: async (req, res) => {
-        const requesterId = req.params.id; // The user who sent the request
-        const accepterId = req.user.id;   // The user accepting the request
+        // Add the recipient's ID to the sender's sent requests
+        if (!sender.matchRequestsSent.includes(recipientId)) {
+            sender.matchRequestsSent.push(recipientId);
+            await sender.save();
+        }
 
-        try {
-            const requester = await User.findById(requesterId);
-            const accepter = await User.findById(accepterId);
+        // Add the sender's ID to the recipient's received requests
+        if (!recipient.matchRequestsReceived.includes(senderId)) {
+            recipient.matchRequestsReceived.push(senderId);
+            await recipient.save();
+        }
 
-            if (!requester || !accepter) {
-                return res.status(404).send("User not found.");
-            }
+        res.json({ success: true, message: "Match request sent." });
+    } catch (err) {
+        console.error("Error sending match request:", err);
+        res.status(500).json({ success: false, message: "Failed to send match request. Please try again." });
+    }
+},
+acceptMatchRequest: async (req, res) => {
+    const requesterId = req.params.id; // The user who sent the request
+    const accepterId = req.user.id;   // The user accepting the request
 
-            // Add each other to their matchedUsers arrays
-            if (!accepter.matchedUsers.includes(requesterId)) {
-                accepter.matchedUsers.push(requesterId);
-                await accepter.save();
-            }
-            if (!requester.matchedUsers.includes(accepterId)) {
-                requester.matchedUsers.push(accepterId);
-                await requester.save();
-            }
+    try {
+        const requester = await User.findById(requesterId);
+        const accepter = await User.findById(accepterId);
 
-            // Remove from received/sent requests
-            accepter.matchRequestsReceived = accepter.matchRequestsReceived.filter(id => id.toString() !== requesterId);
+        if (!requester || !accepter) {
+            return res.status(404).json({ message: "User not found." });
+        }
+
+        // Add each other to their matchedUsers arrays
+        if (!accepter.matchedUsers.includes(requesterId)) {
+            accepter.matchedUsers.push(requesterId);
             await accepter.save();
-            requester.matchRequestsSent = requester.matchRequestsSent.filter(id => id.toString() !== accepterId);
-            await requester.save();
-
-            res.redirect('/application'); // Redirect to the applications page to see the update
-        } catch (err) {
-            console.error("Error accepting match request:", err);
-            req.flash('error', 'Failed to accept match request. Please try again.');
-            res.redirect('/application');
         }
-    },
+        if (!requester.matchedUsers.includes(accepterId)) {
+            requester.matchedUsers.push(accepterId);
+            await requester.save();
+        }
+
+        // Remove from received/sent requests
+        accepter.matchRequestsReceived = accepter.matchRequestsReceived.filter(id => id.toString() !== requesterId);
+        await accepter.save();
+        requester.matchRequestsSent = requester.matchRequestsSent.filter(id => id.toString() !== accepterId);
+        await requester.save();
+
+        res.json({ success: true, message: "Match request accepted." });
+    } catch (err) {
+        console.error("Error accepting match request:", err);
+        res.status(500).json({ success: false, message: "Failed to accept match request. Please try again." });
+    }
+},
 
     rejectMatchRequest: async (req, res) => {
         const requesterId = req.params.id; // The user who sent the request
@@ -195,46 +191,36 @@ module.exports = {
         }
     },
 
+updateUserDetails: async (req, res) => {
+    try {
+        const { college, year, major, sex, enableComments, category, hobbies } = req.body;
 
-    updateUserDetails: async (req, res) => {
-        try {
-            const { college, year, major, sex, enableComments, category, hobbies } = req.body;
+        const updateData = {
+            college: college,
+            year: parseInt(year),
+            major: major,
+            enableComments: !!enableComments,
+            hobbies: hobbies,
+        };
 
-            const updatedUser = await User.findByIdAndUpdate(
-                req.user.id,
-                {
-                    college: college,
-                    year: parseInt(year),
-                    major: major,
-                    sex: sex,
-                    enableComments: !!enableComments,
-                    category: category,
-                    hobbies: hobbies,
-                },
-                { new: true, runValidators: true }
-            );
+        if (sex && sex !== '') updateData.sex = sex;
+        if (category && category !== '') updateData.category = category;
 
-            console.log("User details update attempted.");
-            console.log("Updated User from DB (after updateUserDetails):", updatedUser);
+        // Optional: Handle empty strings by setting to default
+        // if (sex === '') updateData.sex = 'Other';
+        // if (category === '') updateData.category = 'Other';
 
-            if (!updatedUser) {
-                console.error("User not found or not updated in database for ID:", req.user.id);
-                return res.status(404).send("User not found for updating details.");
-            }
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.id,
+            updateData,
+            { new: true, runValidators: true }
+        );
 
-            console.log("User details updated successfully in DB!");
-            req.flash("success", "Your profile details have been updated!");
-            res.redirect("/personalUser");
-        } catch (err) {
-            console.error("Error in updateUserDetails:", err);
-            if (err.name === 'ValidationError') {
-                const errors = Object.values(err.errors).map(el => el.message);
-                res.status(400).send(`Validation error: ${errors.join(', ')}`);
-            } else {
-                res.status(500).send("Error updating profile details: " + err.message);
-            }
-        }
-    },
+        // ... rest of your update logic ...
+    } catch (err) {
+        // ... error handling ...
+    }
+},
 
     getPreferences: async (req, res) => {
         try {

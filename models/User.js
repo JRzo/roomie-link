@@ -26,6 +26,7 @@ const UserSchema = new mongoose.Schema({
     sex: {
         type: String,
         enum: ['Male', 'Female', 'Other'],
+        default: 'Other' // Added default value
     },
     enableComments: {
         type: Boolean,
@@ -33,7 +34,8 @@ const UserSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['Technology', 'Travel', 'Food', 'Other'], // <--- **UPDATED LINE**
+        enum: ['Technology', 'Travel', 'Food', 'Other'],
+        default: 'Other' // Added default value
     },
     hobbies: {
         type: String,

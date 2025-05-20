@@ -23,7 +23,7 @@
             </div>
             <ul class="menu menu-horizontal px-10">
                 <li><a href="/profile" class="font-permanent-marker text-xl">Dashboard</a></li>
-                <!-- <li><a href="/application" class="font-permanent-marker text-xl">Application</a></li> -->
+                <li><a href="/application" class="font-permanent-marker text-xl">Application</a></li>
             </ul>
         </div>
 
@@ -165,7 +165,7 @@
                             <label class="label">
                                 <span class="label-text">Hobbies (comma-separated):</span>
                             </label>
-                            <input type="text" name="hobbies" placeholder="e.g., reading, hiking" class="input input-bordered w-full" value="<%= typeof filters !== 'undefined' && filters.hobbies ? filters.hobbies.join(', ') : '' %>" />
+                            <input type=--"text" name="hobbies" placeholder="e.g., reading, hiking" class="input input-bordered w-full" value="<%= typeof filters !== 'undefined' && filters.hobbies ? filters.hobbies.join(', ') : '' %>" />
                         </div>
 
                         <button type="submit" class="btn btn-primary w-full mt-4">Apply Filters</button>
@@ -199,7 +199,8 @@
                                 </ul>
                             </div>
                             <div class="card-actions p-4 flex justify-between items-center border-t border-base-200">
-<form action="/post/sendMatchRequest/<%= users[i]._id %>" method="POST" class="flex-grow mr-2">
+<form action="/post/sendMatchRequest/<%= users[i]._id %>" method="POST" class="flex-grow mr-2"
+      onsubmit="handleMatchRequest(event, this)">
     <button type="submit" class="btn btn-primary btn-sm w-full">Match</button>
 </form>
                                 <% if (users[i].social) { %>
@@ -257,6 +258,34 @@
                 filterDetails.open = true;
             }
         });
+
+         async function handleMatchRequest(event, form) {
+        event.preventDefault(); // Prevent the default form submission
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Optionally provide visual feedback to the user (e.g., change the button text/state)
+                const button = form.querySelector('button');
+                if (button) {
+                    button.textContent = 'Request Sent';
+                    button.disabled = true;
+                }
+                console.log('Match request successful:', data.message);
+            } else {
+                console.error('Match request failed:', data.message);
+                alert(data.message); // Or display an error message in the UI
+            }
+        } catch (error) {
+            console.error('There was an error sending the match request:', error);
+            alert('An unexpected error occurred.');
+        }
+    }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/profile.js"></script>
